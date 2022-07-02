@@ -44,7 +44,7 @@ def get_mp4(url):
     # mp4_1080p.download()
 
 
-api_key = 'INSERT YOUR OWN API KEY' #Google API key
+api_key = 'AIzaSyDXLJ53zMYrmx6Jlu8883G-ZUJfVjFzkVY' #Google API key
 yt = YouTubeDataAPI(api_key)
 
 video = yt.search('The Most Beautiful Equation in Math')[0]
@@ -66,15 +66,15 @@ os.remove('test.wav')
 query = r.recognize_google(audio, language='en')
 
 translator = Translator()
-text_to_translate = translator.translate(query, dest='zh-CN')
+text_to_translate = translator.translate(query, dest='fa-IR')
 text = text_to_translate.text
 print(text)
 
 speak = gTTS(text=text, lang='zh-CN', slow=False)
-speak.save(video['video_title'] + ' - chinese-translated.mp3')
+speak.save(video['video_title'] + ' - persian-translated.mp3')
 
-other_audio = ffmpeg.input(video['video_title'] + ' - chinese-translated.mp3')
+other_audio = ffmpeg.input(video['video_title'] + ' - persian-translated.mp3')
 mp4 = ffmpeg.input(video['video_title'] + '.mp4')
 video = mp4.video
 
-ffmpeg.concat(video, other_audio, v=1, a=1).output('combined2.mp4').run()
+ffmpeg.concat(video, other_audio, v=1, a=1).output('dubbed.mp4').run()
